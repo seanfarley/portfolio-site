@@ -1,104 +1,29 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h2>PORTFOLIO</h2>
 <div id="myBtnContainer">
   <button class="btn active" onclick="filterSelection('all')"> All</button>
-  <button class="btn" onclick="filterSelection('nature')"> Nature</button>
-  <button class="btn" onclick="filterSelection('travel')"> Travel</button>
-  <button class="btn" onclick="filterSelection('animals')"> Animals</button>
-  <button class="btn" onclick="filterSelection('arts')"> Arts</button>
+  {% for category in categories %}
+    <button class="btn" onclick="filterSelection('{{ category.title.lower }}')"> {{ category.title }}</button>
+  {% endfor %}
 </div>
 
+
 <!-- Portfolio Gallery Grid -->
+{% for category in categories %}
 <div class="row">
-  <div class="column nature">
+  {% for post in category.posts.all %}
+  <div class="column {{ category.title.lower }}">
     <div class="content">
-      <img src="/static/torres.jpg" alt="Mountains" style="width:100%">
-      <h4>Mountains</h4>
-      <p>Lorem ipsum dolor..</p>
+      <img src="{{ post.pic_url }}" alt="{{ post.title }}" style="width:100%">
+      <a href="{% url 'post_detail' pk=post.pk %}"</a>
+      <div class="overlay">
+        <div class="text">{{ post.title }}</div>
+      </div>
     </div>
   </div>
-  <div class="column nature">
-    <div class="content">
-      <img src="/static/trolltunga.jpg" alt="Fjords" style="width:100%">
-      <h4>Fjords</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column nature">
-    <div class="content">
-      <img src="/static/aomori.jpg" alt="Forests" style="width:100%">
-      <h4>Forests</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-
-  <div class="column travel">
-    <div class="content">
-      <img src="/static/chile.jpg" alt="Chile" style="width:100%">
-      <h4>Chile</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column travel">
-    <div class="content">
-      <img src="/static/italy.jpg" alt="Italy" style="width:100%">
-      <h4>Italy</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column travel">
-    <div class="content">
-      <img src="/static/norway.jpg" alt="Norway" style="width:100%">
-      <h4>Norway</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-
-  <div class="column animals">
-    <div class="content">
-      <img src="/static/dolphin.jpg" alt="Dolphins" style="width:100%">
-      <h4>Dolphins</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column animals">
-    <div class="content">
-      <img src="/static/butterfly.jpg" alt="Butterflies" style="width:100%">
-      <h4>Butterflies</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column animals">
-    <div class="content">
-      <img src="/static/goat.jpg" alt="Goats" style="width:100%">
-      <h4>Goats</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-
-  <div class="column arts">
-    <div class="content">
-      <img src="/static/movie.jpg" alt="Movie" style="width:100%">
-      <h4>Movies</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column arts">
-    <div class="content">
-      <img src="/static/dress.jpg" alt="Clothes" style="width:100%">
-      <h4>Clothes</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column arts">
-    <div class="content">
-      <img src="/static/dress.jpg" alt="Clothes" style="width:100%">
-      <h4>Clothes</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
+  {% endfor %}
+{% endfor %}
 <!-- END GRID -->
 </div>
 

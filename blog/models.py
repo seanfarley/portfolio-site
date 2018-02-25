@@ -9,7 +9,7 @@ class Post(models.Model):
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
-
+    pic_url = models.CharField(max_length=1000)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -20,6 +20,16 @@ class Post(models.Model):
 
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
+
+class Category(models.Model):
+    title = models.CharField(max_length=30)
+    posts = models.ManyToManyField(Post)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "categories"
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments')
