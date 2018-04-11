@@ -54,7 +54,7 @@ h1 {
 
 /* The "show" class is added to the filtered elements */
 .show {
-    display: block;
+    display: inline-block;
 }
 
 /* Style the buttons */
@@ -82,30 +82,70 @@ h1 {
     position: relative;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #008CBA;
+/* =================================
+  Post Preview Layout Styles
+==================================== */
+
+.post-preview figure {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 50% 0;
+    cursor: pointer;
+    max-width: 100%; /* Does this change anything? */
 }
 
-.column > .content:hover .overlay {
-  opacity: 1;
+.post-preview figure::before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(0deg, #1cb5e0 0%, #000046 100%);
+    content: '';
 }
 
-.text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
+.post-preview figure:hover img {
+    opacity: 0.25;
+}
+
+.post-preview figure:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.post-preview figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.3s ease-in-out;
+}
+
+.post-preview figcaption h1 {
+    font-size: 18px;
+}
+
+.post-preview figcaption a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.post-preview img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease-in-out;
 }

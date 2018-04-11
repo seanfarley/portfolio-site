@@ -2,7 +2,7 @@
 
 {% block content %}
 <div id="myBtnContainer">
-  <button class="btn active" onclick="filterSelection('all')"> All</button>
+  <button class="btn active" onclick="filterSelection('all')">All</button>
   {% for category in categories %}
     <button class="btn" onclick="filterSelection('{{ category.title.lower }}')"> {{ category.title }}</button>
   {% endfor %}
@@ -15,11 +15,14 @@
   {% for post in category.posts.all %}
   <div class="column {{ category.title.lower }}">
     <div class="content">
-      <img src="{{ post.pic_url }}" alt="{{ post.title }}" style="width:100%">
-      <a href="{% url 'post_detail' pk=post.pk %}"</a>
-      <div class="overlay">
-        <div class="text">{{ post.title }}</div>
-      </div>
+      <article class="post-preview">
+        <figure>
+          <img src="{{ post.pic_url }}" alt="{{ post.title }}" style="width:100%">
+          <figcaption>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+          </figcaption>
+        </figure>
+      </article>
     </div>
   </div>
   {% endfor %}
