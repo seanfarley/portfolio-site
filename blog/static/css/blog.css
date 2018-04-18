@@ -6,31 +6,63 @@
     box-sizing: border-box;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1 {
+    color: #348ba8;
+    font-family: 'Josefin Sans';
+    font-size: 2em;
+}
+
 /* =================================
   Base Layout Styles
 ==================================== */
 
-.site {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+/* ---- Navigation ---- */
+
+.main-nav {
+	margin-top: 5px;
+	display: block;
+	padding: 10px 15px;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #348ba8;
+    float: right;
+    font-size: 1.2em;
+    margin-right: 20px;
+    text-decoration: none;
 }
 
 .page-header {
     background-color: none;
     margin-top: 0;
     margin-bottom: 0;
-    padding: 20px 0 20px 50px;
+    font-family: 'Josefin Sans';
+    border: none;
+    padding-top: .5em;
+	padding-bottom: .5em;
+}
+
+.name a {
+    color: #348ba8;
+    text-decoration: none;
 }
 
 .name a:hover {
     color: #055570;
 }
 
-.name a {
-    color: #348ba8;
-    text-decoration: none;
-    font-size: 0.75em;
+/* ---- Layout Containers ---- */
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .site-content {
@@ -47,69 +79,44 @@
     padding: 2em 0;
     width: 100%;
     color: #878787;
+    font-family: 'Josefin Sans';
 }
 
 .content {
     margin-left: 40px;
 }
 
-h1, h2, h3, h4 {
-    font-family: 'Josefin Sans';
-}
-
-.date {
-    color: #828282;
-    font-size: 0.75em;
-}
-
-.save {
-    float: right;
-}
-
-.post-form textarea, .post-form input {
-    width: 100%;
-}
-
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #348ba8;
-    float: right;
-    font-size: 1.2em;
-    margin-right: 20px;
-    text-decoration: none;
-}
-
-.post h1 a, .post h1 a:visited {
-    color: #348ba8;
-}
-
-.comment {
-    margin: 20px 0 20px 20px;
-}
-
 /* =================================
   Post Layout Styles
 ==================================== */
 
-.post {
-    margin-bottom: 0;
-    font-size: 1.25em;
+.main-header {
+  padding-top: 250px;
+  height: 700px;
+  background: linear-gradient(#1cb5e0, transparent 70%),
+              linear-gradient(0deg, #fff, transparent),
+              #ffa949 url('/static/photos/valle_frances.jpg') no-repeat center;
+  background-size: cover;
+  text-align: center;
+  font-family: 'Josefin Sans';
 }
 
-.post-header {
-    margin-bottom: 25px;
-    padding-top: 200px;
-    height: 700px;
-    text-align: center;
-    background: linear-gradient(#1cb5e0, transparent 80%),
-                linear-gradient(0deg, #fff, transparent),
-                url('/static/photos/valle_frances.jpg') no-repeat center top;
-    background-size: cover;
+.nav {
+    width: 100%;
+    position: absolute;
+    top: 40px;
 }
 
 .post-title {
     color: white;
     font-weight: normal;
     line-height: 1.3;
+}
+
+.post {
+    margin-bottom: 0;
+    font-size: 1.25em;
+    font-family: 'Josefin Sans';
 }
 
 .t-border {
@@ -125,6 +132,39 @@ h1, h2, h3, h4 {
   margin: auto;
   max-width: 960px;
   color: #878787;
+}
+
+.comment {
+    margin: 20px 0 20px 20px;
+}
+
+.date {
+    color: #828282;
+    font-size: 0.75em;
+}
+
+/* =================================
+  Edit Page Layout Styles
+==================================== */
+
+.save {
+    float: right;
+}
+
+.edit-page {
+    color: #348ba8;
+    font-family: 'Josefin Sans';
+    font-size: 2em;
+}
+
+/* =================================
+  Comment Page Layout Styles
+==================================== */
+
+.comment-page {
+    color: #348ba8;
+    font-family: 'Josefin Sans';
+    font-size: 2em;
 }
 
 /* =================================
@@ -150,22 +190,20 @@ h1, h2, h3, h4 {
 .comment {
   margin-left: 250px;
   max-width: 960px;
+  font-family: 'Josefin Sans';
 }
 
 /* =================================
   Media Queries
 ==================================== */
 
-@media (min-width: 769px) {
-
-    .wrap {
-        min-height: calc(100vh - 76px);
-    }
+@media (min-width: 768px) {
 
     .container {
         width: 100%;
         margin: 0 auto;
     }
+
 }
 
 @media (max-width: 768px) {
@@ -173,7 +211,6 @@ h1, h2, h3, h4 {
     .container {
         width: 90%;
         padding: 20px;
-        border: none;
     }
 
     .post-header {
@@ -189,5 +226,7 @@ h1, h2, h3, h4 {
         font-size: 1.5rem;
         padding: 10% 12%;
         margin: 50px 0 20px;
+        border: none;
     }
+
 }

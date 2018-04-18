@@ -1,36 +1,51 @@
-{% extends 'blog/base.html' %}
+{% load staticfiles %}
 
-{% block content %}
+<html>
+  <head>
+    <title>Loading</title>
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <header id="top" class="main-header">
+      <div class="nav name">
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="top-menu" style="color:white">Log Out</a>
+            <a href="{% url 'post_new' %}" class="top-menu" style="color:white"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{% url 'post_draft_list' %}" class="top-menu" style="color:white"><span class="glyphicon glyphicon-edit"></span></a>
+            <a href="/" class="top-menu" style="color:white">About</a></h1>
+            <a href="/" class="top-menu" style="color:white">Home</a></h1>
+        {% else %}
+            <a href="{% url 'login' %}" class="top-menu" style="color:white"><span class="glyphicon glyphicon-lock"></span></a>
+            <a href="/" class="top-menu" style="color:white">About</a></h1>
+            <a href="/" class="top-menu" style="color:white">Home</a></h1>
+        {% endif %}
+      </div>
+      <h1 class="post-title">{{ post.title }}</h1>
+    </header>
+
     <div class="post">
-        <header class="post-header">
-           <h1 class="post-title">{{ post.title }}</h1>
-        </header>
-           <p class="t-border post-content">{{ post.text|linebreaksbr }}</p>
-           {% if post.published_date %}
-             <div class="date">
-                 {{ post.published_date }}
-             </div>
-           {% else %}
-             <a class="publish btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
-           {% endif %}
-           {% if user.is_authenticated %}
-             <a class="edit btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-             <a class="remove btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-           {% endif %}
+        <p class="t-border post-content">{{ post.text|linebreaksbr }}</p>
+        {% if user.is_authenticated %}
+            {% if post.published_date %}
+                <div class="date">
+                    {{ post.published_date }}
+                </div>
+            {% else %}
+                <a class="publish btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+            {% endif %}
+            <a class="edit btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="remove btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        {% else %}
+            <a class="comment btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
+        {% endif %}
     </div>
 
-   <a class="comment btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
-   {% for comment in post.comments.all %}
-       <div class="comment">
-           <div class="date">
-               {{ comment.created_date }}
-               {% if not comment.approved_comment %}
-                   <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-                   <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
-               {% endif %}
-           </div>
-           <strong>{{ comment.author }}</strong>
-           <p>{{ comment.text|linebreaks }}</p>
-       </div>
-   {% endfor %}
-{% endblock %}
+    <footer class="main-footer">
+        <span>Copyright &copy; 2018 Lauren He</span>
+    </footer>
+</html>
