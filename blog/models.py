@@ -7,7 +7,8 @@ from django.contrib.sites.models import Site
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
-    content = RichTextUploadingField(default='DEFAULT VALUE')
+    slug = models.SlugField(unique=False, blank=True)
+    content = RichTextUploadingField(blank=True)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
@@ -26,6 +27,7 @@ class Post(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=30)
+    slug = models.SlugField(unique=False, blank=True)
     posts = models.ManyToManyField(Post)
 
     def __str__(self):

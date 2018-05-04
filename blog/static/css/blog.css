@@ -3,7 +3,7 @@
 ==================================== */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 ul {
@@ -12,10 +12,20 @@ ul {
   list-style: none;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  flex: 1 0 auto;
+}
+
 h1 {
-    color: #348ba8;
-    font-family: 'Josefin Sans';
-    font-size: 2em;
+  color: #348ba8;
+  font-family: 'Josefin Sans';
+  font-size: 2em;
 }
 
 /* =================================
@@ -25,65 +35,57 @@ h1 {
 /* ---- Navigation ---- */
 
 .main-nav {
-	margin-top: 5px;
+  margin-top: 5px;
 	display: block;
 	padding: 10px 15px;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
-    color: #348ba8;
-    float: right;
-    font-size: 1.2em;
-    margin-right: 20px;
-    text-decoration: none;
+  color: #348ba8;
+  float: right;
+  font-size: 1.2em;
+  margin-right: 20px;
+  text-decoration: none;
 }
 
 .page-header {
-    background-color: none;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-family: 'Josefin Sans';
-    border: none;
-    padding-top: .5em;
+  background-color: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: 'Josefin Sans';
+  border: none;
+  padding-top: .5em;
 	padding-bottom: .5em;
 }
 
 .name a {
-    color: #348ba8;
-    text-decoration: none;
+  color: #348ba8;
+  text-decoration: none;
 }
 
 .name a:hover {
-    color: #055570;
+  color: #055570;
 }
 
 /* ---- Layout Containers ---- */
 
-.site {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-.site-content {
-  flex: 1;
-}
-
 .container {
-    padding-left: 1em;
-    padding-right: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .main-footer {
-    text-align: center;
-    padding: 2em 0;
-    width: 100%;
-    color: #878787;
-    font-family: 'Josefin Sans';
+  text-align: center;
+  padding: 2em 0;
+  width: 100%;
+  color: #878787;
+  font-family: 'Josefin Sans';
+  position: absolute; /*footer at bottom*/
+  bottom: 0; /*footer at bottom*/
 }
 
 .content {
-    margin-left: 40px;
+  margin-left: 40px;
 }
 
 /* =================================
@@ -102,21 +104,21 @@ h1 {
 }
 
 .nav {
-    width: 100%;
-    position: absolute;
-    top: 40px;
+  width: 100%;
+  position: absolute;
+  top: 40px;
 }
 
 .post-title {
-    color: white;
-    font-weight: normal;
-    line-height: 1.3;
+  color: white;
+  font-weight: normal;
+  line-height: 1.3;
 }
 
 .post {
-    margin-bottom: 0;
-    font-size: 1.25em;
-    font-family: 'Josefin Sans';
+  margin-bottom: 0;
+  font-size: 1.25em;
+  font-family: 'Josefin Sans';
 }
 
 .t-border {
@@ -135,12 +137,12 @@ h1 {
 }
 
 .comment {
-    margin: 20px 0 20px 20px;
+  margin: 20px 0 20px 20px;
 }
 
 .date {
-    color: #828282;
-    font-size: 0.75em;
+  color: #828282;
+  font-size: 0.75em;
 }
 
 /* =================================
@@ -148,13 +150,13 @@ h1 {
 ==================================== */
 
 .save {
-    float: right;
+  float: right;
 }
 
 .edit-page {
-    color: #348ba8;
-    font-family: 'Josefin Sans';
-    font-size: 2em;
+  color: #348ba8;
+  font-family: 'Josefin Sans';
+  font-size: 2em;
 }
 
 /* =================================
@@ -162,9 +164,9 @@ h1 {
 ==================================== */
 
 .comment-page {
-    color: #348ba8;
-    font-family: 'Josefin Sans';
-    font-size: 2em;
+  color: #348ba8;
+  font-family: 'Josefin Sans';
+  font-size: 2em;
 }
 
 /* =================================

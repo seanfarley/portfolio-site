@@ -1,48 +1,46 @@
 {% load staticfiles %}
 
 <html>
-    <head>
-        <title>Loading</title>
-        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link rel="stylesheet" href="{% static 'css/cat.css' %}">
-        <meta name="viewport" content="width=device-width">
-    </head>
-
-    <header class="page-header">
-		<ul class="main-nav name">
-			{% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}" class="top-menu">Log Out</a></li>
-                <li><a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></li>
-                <li><a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a></li>
-                <li><a href="/" class="top-menu">About</a></h1></li>
-                <li><a href="/" class="top-menu">Home</a></h1></li>
-            {% else %}
-                <li><a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-                <li><a href="/" class="top-menu">About</a></h1></li>
-                <li><a href="/" class="top-menu">Home</a></h1></li>
-            {% endif %}
+<head>
+  <title>Loading</title>
+  <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cat.css' %}">
+  <meta name="viewport" content="width=device-width">
+</head>
+<body class="site">
+  <header class="page-header">
+	   <ul class="main-nav name">
+		    {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}" class="top-menu">Log Out</a></li>
+          <li><a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></li>
+          <li><a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a></li>
+          <li><a href="/" class="top-menu">About</a></h1></li>
+          <li><a href="/" class="top-menu">Home</a></h1></li>
+        {% else %}
+          <li><a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+          <li><a href="/" class="top-menu">About</a></h1></li>
+          <li><a href="/" class="top-menu">Home</a></h1></li>
+        {% endif %}
 		</ul>
-	</header>
-
-    <body class="site">
-       <div class="wrapper site-content">
-          <div class="container">
-             <div class="content container">
-                <div class="row">
-                   <div class="col-md-12">
-                   {% block content %}
-                   {% endblock %}
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
-       <footer class="main-footer">
-          <span>Copyright &copy; 2018 Lauren He</span>
-       </footer>
-    </body>
+	 </header>
+   <div class="wrapper site-content">
+     <div class="container">
+       <div class="content container">
+         <div class="row">
+           <div class="col-md-12">
+           {% block content %}
+           {% endblock %}
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="main-footer">
+    <span>Copyright &copy; 2018 Lauren He</span>
+  </footer>
+</body>
 </html>
