@@ -5,6 +5,9 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class PostAdmin(admin.ModelAdmin):
 
+	model = Post
+	prepopulated_fields = {'slug': ('title',)}
+
 	class Media:
 		widgets = {
             'content': CKEditorUploadingWidget(),

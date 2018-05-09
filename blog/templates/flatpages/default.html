@@ -1,4 +1,5 @@
 {% extends "blog/base.html"  %}
+{% load staticfiles %}
 
 {% block title %}
     {{ flatpage.title }} - {{ block.super }}
@@ -7,15 +8,20 @@
 {% block content %}
 
     <div class="content">
-        <div class="section-inner clearfix">
+      <h1 class="title">{{ flatpage.title }}</h1>
 
-        <h1>{{ flatpage.title }}</h1>
+      <div class="row">
 
-        <p>
+        <div class="primary col">
             {{ flatpage.content|linebreaks }}
-        </p>
-
         </div>
+
+        <div class="secondary col">
+          <img src="/static/photos/fattycakes.jpg">
+        </div>
+
+      </div>
+
     </div>
 
 {% endblock %}

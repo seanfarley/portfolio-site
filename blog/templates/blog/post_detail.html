@@ -17,11 +17,11 @@
             <a href="{% url 'logout' %}" class="top-menu" style="color:white">Log Out</a>
             <a href="{% url 'post_new' %}" class="top-menu" style="color:white"><span class="glyphicon glyphicon-plus"></span></a>
             <a href="{% url 'post_draft_list' %}" class="top-menu" style="color:white"><span class="glyphicon glyphicon-edit"></span></a>
-            <a href="/" class="top-menu" style="color:white">About</a></h1>
+            <a href="/about/" class="top-menu" style="color:white">About</a></h1>
             <a href="/" class="top-menu" style="color:white">Home</a></h1>
         {% else %}
             <a href="{% url 'login' %}" class="top-menu" style="color:white"><span class="glyphicon glyphicon-lock"></span></a>
-            <a href="/" class="top-menu" style="color:white">About</a></h1>
+            <a href="/about/" class="top-menu" style="color:white">About</a></h1>
             <a href="/" class="top-menu" style="color:white">Home</a></h1>
         {% endif %}
       </div>

@@ -4,11 +4,13 @@
 <head>
   <title>Loading</title>
   <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+  <link rel="shortcut icon" href="{% static 'favicon/favicon.png' %}"/>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
   <link rel="stylesheet" href="{% static 'css/blog.css' %}">
   <link rel="stylesheet" href="{% static 'css/cat.css' %}">
+  <link rel="stylesheet" href="{% static 'css/flatpage.css' %}">
   <meta name="viewport" content="width=device-width">
 </head>
 <body class="site">
@@ -18,11 +20,11 @@
           <li><a href="{% url 'logout' %}" class="top-menu">Log Out</a></li>
           <li><a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></li>
           <li><a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a></li>
-          <li><a href="/" class="top-menu">About</a></h1></li>
+          <li><a href="/about/" class="top-menu">About</a></h1></li>
           <li><a href="/" class="top-menu">Home</a></h1></li>
         {% else %}
           <li><a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-          <li><a href="/" class="top-menu">About</a></h1></li>
+          <li><a href="/about/" class="top-menu">About</a></h1></li>
           <li><a href="/" class="top-menu">Home</a></h1></li>
         {% endif %}
 		</ul>
