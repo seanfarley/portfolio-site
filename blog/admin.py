@@ -6,7 +6,11 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 class PostAdmin(admin.ModelAdmin):
 
 	model = Post
-	prepopulated_fields = {'slug': ('title',)}
+	fields = ('title', 'slug', 'author', 'content', 'pic_url',
+			  'created_date', 'published_date',)
+	#prepopulated_fields = {'slug': ('title',)}
+	readonly_fields = ('slug',)
+	list_display = ('title', 'created_date', 'author', 'published_date',)
 
 	class Media:
 		widgets = {

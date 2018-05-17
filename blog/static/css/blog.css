@@ -84,10 +84,6 @@ h1 {
   bottom: 0; /*footer at bottom*/
 }
 
-.content {
-  margin-left: 40px;
-}
-
 /* =================================
   Post Layout Styles
 ==================================== */
@@ -199,21 +195,7 @@ h1 {
   Media Queries
 ==================================== */
 
-@media (min-width: 768px) {
-
-    .container {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-}
-
 @media (max-width: 768px) {
-
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
 
     .post-header {
         max-height: 380px;

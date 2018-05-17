@@ -2,12 +2,14 @@ from django.db import models
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.sites.models import Site
+from django.urls import reverse
 
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=False, blank=True)
+    slug = models.SlugField(unique=False, blank=True,
+                            help_text="Slug will be generated automatically from the title of the post")
     content = RichTextUploadingField(blank=True)
     created_date = models.DateTimeField(
             default=timezone.now)
@@ -21,6 +23,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[self.id, self.slug])
 
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
