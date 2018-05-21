@@ -20,12 +20,14 @@
           <li><a href="{% url 'logout' %}" class="top-menu">Log Out</a></li>
           <li><a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></li>
           <li><a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a></li>
-          <li><a href="/about/" class="top-menu">About</a></h1></li>
-          <li><a href="/" class="top-menu">Home</a></h1></li>
+          <li><a href="/contact/" class="top-menu">Contact</a></li>
+          <li><a href="/about/" class="top-menu">About</a></li>
+          <li><a href="/" class="top-menu">Home</a></li>
         {% else %}
-          <li><a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-          <li><a href="/about/" class="top-menu">About</a></h1></li>
-          <li><a href="/" class="top-menu">Home</a></h1></li>
+          <li><a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a></li>
+          <li><a href="/contact/" class="top-menu">Contact</a></li>
+          <li><a href="/about/" class="top-menu">About</a></li>
+          <li><a href="/" class="top-menu">Home</a></li>
         {% endif %}
 		</ul>
 	 </header>

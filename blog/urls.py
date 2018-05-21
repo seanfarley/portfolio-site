@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.post_cat, name='home'),
+    url(r'^contact/$', views.contact, name='contact'),
     url(r'^post_list/$', views.post_list, name='post_list'),
     url(r'^post/(?P<pk>\d+)/(?P<post_slug>[\w\d-]+)$', views.post_detail, name='post_detail'),
     url(r'^post/new/$', views.post_new, name='post_new'),

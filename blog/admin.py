@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Category
+from .models import Post, Comment, Category, Contact
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
@@ -25,6 +25,12 @@ class PostAdmin(admin.ModelAdmin):
             'all': ('/static/css/custom.css',)
         }
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject','date',)
+    search_fields = ('name', 'email',)
+    date_hierarchy = 'date'
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)
 admin.site.register(Category)
+admin.site.register(Contact, ContactAdmin)
