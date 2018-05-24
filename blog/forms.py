@@ -28,10 +28,10 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('author', 'text', 'email',)
+        fields = ('name', 'message', 'email',)
 
     def clean_name(self):
-        name = self.cleaned_data['author']
+        name = self.cleaned_data['name']
         name_l = name.lower()
         if name_l == "admin" or name_l == "author":
             raise ValidationError("Author name can't be 'admin/author'")

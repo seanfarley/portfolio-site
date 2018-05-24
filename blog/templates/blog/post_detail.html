@@ -38,16 +38,65 @@
                     {{ post.published_date }}
                 </div>
             {% else %}
-                <a class="publish btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+                <a class="publish" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
             {% endif %}
-            <a class="edit btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a class="remove btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-        {% else %}
-            <a class="comment btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
+            <a class="edit" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="remove" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
     </div>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="form">
+      {{ form.non_field_errors }}
+      <form method="POST" class="post-form">
+          {% csrf_token %}
+          <ul class="form-field">
+              <li>
+                  <label>Name <span class="required">*</span></label>
+                  <input type="text" class="field-rect" />
+              </li>
+              <li>
+                  <label>Email <span class="required">*</span></label>
+                  <input type="email" class="field-rect" />
+              </li>
+              <li>
+                  <label>Message <span class="required">*</span></label>
+                  <textarea class="field-rect field-textarea"></textarea>
+              </li>
+              <li>
+                  <input type="submit" value="Submit"/>
+              </li>
+          </ul>
+      </form>
+    </div>
+
+    {% for comment in post.comments.all %}
+        {% if user.is_authenticated or comment.approved_comment %}
+        <div class="comment">
+            <strong>{{ comment.name }}</strong>
+            <p>{{ comment.message|linebreaks }}</p>
+            <div class="date">
+                {{ comment.created_date }}
+            </div>
+            <div class="comment-btn">
+                {% if not comment.approved_comment %}
+                    <a class="approve" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a class="remove" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                {% endif %}
+            </div>
+       </div>
+       {% endif %}
+   {% endfor %}
 
     <footer class="main-footer">
         <span>Copyright &copy; 2018 Lauren He</span>
     </footer>
+</body>
 </html>
