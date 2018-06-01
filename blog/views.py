@@ -90,13 +90,13 @@ def post_draft_list(request):
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
 @login_required
-def comment_approve(request, pk, post_slug):
-    comment = get_object_or_404(Comment, pk=pk)
+def comment_approve(request, pk, slug):
+    comment = get_object_or_404(Comment, pk=pk, slug=slug)
     comment.approve()
     return redirect('post_detail', pk=comment.post.pk)
 
 @login_required
-def comment_remove(request, pk, post_slug):
-    comment = get_object_or_404(Comment, pk=pk)
+def comment_remove(request, pk, slug):
+    comment = get_object_or_404(Comment, pk=pk, slug=slug)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
