@@ -1,0 +1,5 @@
+django
+django-ckeditor
+django-contrib-comments
+django-debug_toolbar
+Pillow
