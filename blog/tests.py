@@ -24,3 +24,22 @@ class PostModelTests(TestCase):
             pics_url="/static/photos/hello.jpg"
         )
         self.assertLess(post.created_date, timezone.now)
+
+
+class PostDetailViewTestCase(TestCase):
+
+    def setUp(self):
+        self.post = Post.objects.create(
+            uthor=laurenhe,
+            title="Hello",
+            slug="hello",
+            created_date=timezone.now() + datetime.timedelta(days=30),
+            pics_url="/static/photos/hello.jpg"
+        )
+
+        def test_post_detail_view(self):
+            resp = self.client.get(reverse('post_detail',
+                                            kwargs={'pk': self.course.pk}))
+            self.assertEqual(resp.status_code, 200)
+            self.assertEqual(self.post, resp.context['post'])
+            self.assertTemplateUsed(resp, 'blog/post_detail.html')

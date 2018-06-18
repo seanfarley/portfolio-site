@@ -1,6 +1,8 @@
 from django import forms
 from .models import Post, Comment, Contact
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.utils.text import slugify
+
 
 class PostForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorUploadingWidget())
@@ -18,6 +20,7 @@ class PostForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(PostForm, self).clean() # call the parent clean method
         title  = cleaned_data.get('title')
+        import pdb; pdb.set_trace()
         # if title exists create slug from title
         if title:
             cleaned_data['slug'] = slugify(title)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.sites.models import Site
 from django.urls import reverse
@@ -25,7 +26,7 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        #self.slug = slugify(self.title)
+        self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

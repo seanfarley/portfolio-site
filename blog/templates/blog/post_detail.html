@@ -4,6 +4,7 @@
   <head>
     <title>Loading</title>
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.png' %}"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
@@ -46,30 +47,22 @@
         {% endif %}
     </div>
 
-    {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
     <div class="form">
       {{ form.non_field_errors }}
-      <form method="POST" class="post-form">
+      <form action="" method="POST" class="post-form">
           {% csrf_token %}
           <ul class="form-field">
               <li>
                   <label>Name <span class="required">*</span></label>
-                  <input type="text" class="field-rect" />
+                  <input id="name" type="text" class="field-rect" />
               </li>
               <li>
                   <label>Email <span class="required">*</span></label>
-                  <input type="email" class="field-rect" />
+                  <input id="email" type="email" class="field-rect" />
               </li>
               <li>
                   <label>Message <span class="required">*</span></label>
-                  <textarea class="field-rect field-textarea"></textarea>
+                  <textarea id="message" class="field-rect field-textarea"></textarea>
               </li>
               <li>
                   <input type="submit" value="Submit"/>
@@ -92,7 +85,7 @@
                     <a class="remove" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                 {% endif %}
             </div>
-       </div>
+        </div>
        {% endif %}
    {% endfor %}
 

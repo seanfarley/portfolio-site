@@ -8,6 +8,19 @@ from django.contrib import messages
 
 def post_detail(request, pk, post_slug):
     post = get_object_or_404(Post, pk=pk)
+    import pdb; pdb.set_trace()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            messages.add_message(request, messages.INFO, 'Your message was added!')
+            return redirect('post_detail', pk=post.pk)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
+def add_comment(request, pk):
+    post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -19,7 +32,8 @@ def post_detail(request, pk, post_slug):
     # if request is GET then show unbound form to the user
     else:
         form = CommentForm()
-    return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
+    return render(request, 'blog/post_detail.html', {'form': form})
+
 
 def post_cat(request):
     categories = Category.objects.all()

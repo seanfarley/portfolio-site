@@ -25,7 +25,7 @@ SECRET_KEY = 'q4*j@*60l(gp#43_n&#u!!)@qix%^zln+v$v477$55a=oa85n0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'renh.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'laurenhe.pythonanywhere.com']
 
 
 # Application definition
@@ -37,11 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'threadedcomments',
+    #'django.contrib.comments',
+    #'django_comments',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'blog',
     'ckeditor',
     'ckeditor_uploader',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -168,3 +173,9 @@ ADMINS = [
 ]
 
 MANAGERS = ADMINS
+
+INTERNAL_IPS = '127.0.0.1'
+
+# Comment App
+
+#COMMENTS_APP = 'threadedcomments'
