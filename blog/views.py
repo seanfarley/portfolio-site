@@ -27,7 +27,7 @@ def add_comment(request, pk):
             comment.post = post
             comment.save()
             messages.add_message(request, messages.INFO, 'Your message was added!')
-            return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', pk=post.pk, post_slug=post.slug)
     # if request is GET then show unbound form to the user
     else:
         form = CommentForm()
@@ -62,7 +62,7 @@ def contact(request):
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
-    return redirect('post_detail', pk=pk)
+    return redirect('post_detail', pk=pk, post_slug=post.slug)
 
 @login_required
 def post_edit(request, pk):
@@ -73,7 +73,7 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', pk=post.pk, post_slug=post.slug)
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
