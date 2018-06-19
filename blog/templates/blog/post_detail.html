@@ -32,7 +32,7 @@
     </header>
 
     <div class="post">
-        <p class="t-border post-content">{{ post.text|linebreaksbr }}</p>
+        <p class="t-border post-content">{{ post.content|linebreaksbr }}</p>
         {% if user.is_authenticated %}
         <ul class="post-btns">
             {% if not post.published_date %}
