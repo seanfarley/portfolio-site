@@ -50,24 +50,9 @@
     <div class="form">
       {{ form.non_field_errors }}
       <form action="" method="POST" class="post-form">
-          {% csrf_token %}
-          <ul class="form-field">
-              <li>
-                  <label>Name <span class="required">*</span></label>
-                  <input id="name" type="text" class="field-rect" />
-              </li>
-              <li>
-                  <label>Email <span class="required">*</span></label>
-                  <input id="email" type="email" class="field-rect" />
-              </li>
-              <li>
-                  <label>Message <span class="required">*</span></label>
-                  <textarea id="message" class="field-rect field-textarea"></textarea>
-              </li>
-              <li>
-                  <input type="submit" value="Submit"/>
-              </li>
-          </ul>
+        {% csrf_token %}
+        {{ comment_form }}
+        <button type="submit" class="save btn btn-default">Save</button>
       </form>
     </div>
 

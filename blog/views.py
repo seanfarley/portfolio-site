@@ -15,8 +15,13 @@ def post_detail(request, pk, post_slug):
             comment.post = post
             comment.save()
             messages.add_message(request, messages.INFO, 'Your message was added!')
-            return redirect('post_detail', pk=post.pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+            return redirect('post_detail', pk=post.pk, post_slug=post.slug)
+        else:
+            comment = CommentForm()
+    else:
+        comment = CommentForm()
+    return render(request, 'blog/post_detail.html',
+                  {'post': post, 'comment_form': comment})
 
 def add_comment(request, pk):
     post = get_object_or_404(Post, pk=pk)
