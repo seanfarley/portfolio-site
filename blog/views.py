@@ -8,7 +8,6 @@ from django.contrib import messages
 
 def post_detail(request, pk, post_slug):
     post = get_object_or_404(Post, pk=pk)
-    import pdb; pdb.set_trace()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
