@@ -106,10 +106,12 @@ def post_draft_list(request):
 def comment_approve(request, pk, slug):
     comment = get_object_or_404(Comment, pk=pk, slug=slug)
     comment.approve()
-    return redirect('post_detail', pk=comment.post.pk)
+    return redirect('post_detail', pk=comment.post.pk,
+                    post_slug=comment.post.slug)
 
 @login_required
 def comment_remove(request, pk, slug):
     comment = get_object_or_404(Comment, pk=pk, slug=slug)
     comment.delete()
-    return redirect('post_detail', pk=comment.post.pk)
+    return redirect('post_detail', pk=comment.post.pk,
+                    post_slug=comment.post.slug)
